@@ -1,4 +1,4 @@
-# HackBellingham.com
+# HackBellingham.com [![Code Climate](https://codeclimate.com/github/hackbellingham/website/badges/gpa.svg)](https://codeclimate.com/github/hackbellingham/website) [![Build Status](https://travis-ci.org/hackbellingham/website.svg?branch=master)](https://travis-ci.org/hackbellingham/website)
 
 ## About Hack Bellingham
 Hack Bellingham is a social group dedicated to growing the local developer community.
