@@ -29,7 +29,7 @@ func slackInviteRequestHandler(c *cli.Context) handleFunc {
 		var invitation invitationRequest
 		err := decoder.Decode(&invitation)
 		if err != nil {
-			JsonResponse(w, invitationResponse{
+			jsonResponse(w, invitationResponse{
 				Message:   "There was an error processing your invitation. Please try again later.",
 				ErrorCode: 1,
 			}, http.StatusInternalServerError)
@@ -38,14 +38,14 @@ func slackInviteRequestHandler(c *cli.Context) handleFunc {
 
 		err = inviteToSlack(c.String("slack-token"), c.String("slack-team"), "", "", invitation.Email)
 		if err != nil {
-			JsonResponse(w, invitationResponse{
+			jsonResponse(w, invitationResponse{
 				Message:   "There was an error processing your invitation. Please try again later.",
 				ErrorCode: 2,
 			}, http.StatusInternalServerError)
 			return
 		}
 
-		JsonResponse(w, invitationResponse{
+		jsonResponse(w, invitationResponse{
 			Message: "Your invitation has been sent. Please check your email.",
 		}, http.StatusOK)
 	}

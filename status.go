@@ -20,6 +20,6 @@ func statusHandler(c *cli.Context) handleFunc {
 		response := statusResponse{
 			Version: c.App.Version,
 		}
-		JsonResponse(w, response, http.StatusOK)
+		jsonResponse(w, response, http.StatusOK)
 	}
 }
