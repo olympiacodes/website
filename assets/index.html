@@ -34,8 +34,22 @@
 			font-family: 'Roboto Slab', Arial, serif; 
 		}
 		input {
-			width: 93.25%;
+			width: 97.75%;
 			padding: 2.25% 1.125%;
+		}
+		input[type=checkbox] {
+			width: auto;
+			position: absolute;
+			top: .25em;
+			left: 0;
+			margin: 0 0 0 0;
+		}
+		label {
+			font-size: .5em;
+			display: block;
+			margin: 1em 0;
+			padding: 0 0 0 25px;
+			position: relative;
 		}
 		button {
 			border-radius: 1.5em;
@@ -98,6 +112,12 @@
 		<div id="slack-form">
 			<h2>Join us on Slack:</h2>
 			<input type="text" placeholder="email address" id="email-address" autofocus>
+			
+			<label for="mailing-list-opt-in">
+				<input type="checkbox" id="mailing-list-opt-in" name="mailing-list-opt-in" checked>
+				Also add me to the Hack Bellingham mailing list. (Email volume will be low. We hate superfluous email just as much then you do.)
+			</label>
+
 			<button onclick="requestInvite();" id="invite-button">Send me an invite</button>
 		</div>
 
@@ -115,7 +135,9 @@
 			xhr.open('POST', encodeURI('request-invite'));
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.send(JSON.stringify({
-				email: document.getElementById("email-address").value
+				email: document.getElementById("email-address").value,
+				requestSlack: true,
+				requestMailingList: document.getElementById("mailing-list-opt-in").checked
 			}));
 
 

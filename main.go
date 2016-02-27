@@ -12,7 +12,7 @@ type handleFunc func(w http.ResponseWriter, req *http.Request)
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "1.0.3"
+	app.Version = "1.1.0"
 	app.Usage = "hack bellingham website"
 
 	app.Flags = []cli.Flag{
@@ -38,6 +38,16 @@ func main() {
 			EnvVar: "HACK_BELLINGHAM_SLACK_TOKEN",
 			Usage:  "access token for your slack team",
 		},
+		cli.StringFlag{
+			Name:   "mailchimp-token",
+			EnvVar: "HACK_BELLINGHAM_MAILCHIMP_TOKEN",
+			Usage:  "api token for your mailchimp account",
+		},
+		cli.StringFlag{
+			Name:   "mailchimp-list",
+			EnvVar: "HACK_BELLINGHAM_MAILCHIMP_LIST",
+			Usage:  "id of the mailchimp list",
+		},
 	}
 
 	app.Action = serve
@@ -46,7 +56,7 @@ func main() {
 }
 
 func serve(c *cli.Context) {
-	http.HandleFunc("/request-invite", slackInviteRequestHandler(c))
+	http.HandleFunc("/request-invite", inviteRequestHandler(c))
 	http.HandleFunc("/status", statusHandler(c))
 	http.Handle("/", http.FileServer(assetFS()))
 
