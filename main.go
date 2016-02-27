@@ -12,7 +12,7 @@ type handleFunc func(w http.ResponseWriter, req *http.Request)
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "1.0.2"
+	app.Version = "1.0.3"
 	app.Usage = "hack bellingham website"
 
 	app.Flags = []cli.Flag{
@@ -31,12 +31,12 @@ func main() {
 		cli.StringFlag{
 			Name:   "slack-team",
 			EnvVar: "HACK_BELLINGHAM_SLACK_TEAM",
-			Usage:  "",
+			Usage:  "slack team name, as found in the slack URL",
 		},
 		cli.StringFlag{
 			Name:   "slack-token",
 			EnvVar: "HACK_BELLINGHAM_SLACK_TOKEN",
-			Usage:  "",
+			Usage:  "access token for your slack team",
 		},
 	}
 
