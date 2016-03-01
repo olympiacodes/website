@@ -41,7 +41,7 @@ Running the site will require the setting of a number of options. These options 
 | `$HACK_BELLINGHAM_SLACK_TEAM`      | `--slack-team`      | Slack team name, as found in the slack URL.                                              | `""`          |
 | `$HACK_BELLINGHAM_SLACK_TOKEN`     | `--slack-token`     | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
 | `$HACK_BELLINGHAM_MAILCHIMP_TOKEN` | `--mailchimp-token` | The API token for your MailChimp account.                                                | `""`          |
-| `$HACK_BELLINGHAM_MAILCHIMP_LIST`  | `--mailchimp-list`  | The ID of the MailChimp list.                                                                                          |               |
+| `$HACK_BELLINGHAM_MAILCHIMP_LIST`  | `--mailchimp-list`  | The ID of the MailChimp list.                                                            | `""`          |
 
 ### systemd Configuration
 The canonical way to run the site is through the [`systemd`][systemd] service manager to setup the environment, manage when the application is started, and monitor the process to keep it running. This can be done with a system file like the one below:
