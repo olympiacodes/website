@@ -98,12 +98,12 @@ func inviteToSlack(slackToken, teamName, firstName, lastName, email string) erro
 	return client.InviteToTeam(teamName, firstName, lastName, email)
 }
 
-func subscribeToList(mailchimpApiKey, email, listId string) error {
-	client, err := mailchimp.NewClient(mailchimpApiKey, nil)
+func subscribeToList(mailchimpAPIKey, email, listID string) error {
+	client, err := mailchimp.NewClient(mailchimpAPIKey, nil)
 	if err != nil {
 		return err
 	}
 
-	_, err = client.Subscribe(email, listId)
+	_, err = client.Subscribe(email, listID)
 	return err
 }
