@@ -3,7 +3,7 @@
 ## About Hack Bellingham
 Hack Bellingham is a social group dedicated to growing the local developer community.
 
-We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of age, disability, gender, nationality, race, religion, sexuality, or similar personal characteristic.
+We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.
 
 ## About 
 The primary purpose of this site is to automate the process for members to join the Hack Bellingham Slack team.
