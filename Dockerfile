@@ -1,5 +1,7 @@
 FROM scratch
 MAINTAINER Kevin Stock <kevinstock@tantalic.com>
+
+ADD certs/ca-certificates.crt /etc/ssl/certs/
 ADD build/bellinghamcodes-linux-amd64 bellinghamcodes
 
 ENV PORT 80

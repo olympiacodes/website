@@ -12,7 +12,10 @@ install: bindata-assetfs
 	go install
 
 linux: bindata-assetfs
-	env GOOS=linux GOARCH=amd64 go build -o build/bellinghamcodes-linux-amd64
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -tags netgo -ldflags '-w' -o build/bellinghamcodes-linux-amd64
 
 docker: linux
 	docker build -t tantalic/bellinghamcodes-website:latest .
+
+update-ca:
+	curl --time-cond certs/ca-certificates.crt -o certs/ca-certificates.crt https://curl.haxx.se/ca/cacert.pem 
