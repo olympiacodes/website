@@ -12,7 +12,7 @@ type handleFunc func(w http.ResponseWriter, req *http.Request)
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "1.1.1"
+	app.Version = "1.2.0"
 	app.Usage = "bellingam.codes website"
 
 	app.Flags = []cli.Flag{
