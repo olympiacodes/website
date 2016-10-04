@@ -24,52 +24,43 @@ To run for development purposes run:
 make run
 ```
 
-To cross-compile to another platform run one of the following:
+## Running with Docker
+To build the docker image run:
 ```sh
-make linux
-make freebsd
-make osx
+make docker
 ```
 
-## Running (in Production)
-Running the site will require the setting of a number of options. These options can be set via command line flags or environment variables. 
+The docker image generated will expose port 80 running the website. 
 
-| Environment Variable |         Flag        |                                       Description                                        | Default Value |
-|----------------------|---------------------|------------------------------------------------------------------------------------------|---------------|
-| `$PORT`              | `--port`            | The TCP port to listen on.                                                               | `3000`        |
-| `$HOST`              | `--host`            | The IP address/hostname to listen on.                                                    | All hosts     |
-| `$SLACK_TEAM`        | `--slack-team`      | Slack team name, as found in the slack URL.                                              | `""`          |
-| `$SLACK_TOKEN`       | `--slack-token`     | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
-| `$MAILCHIMP_TOKEN`   | `--mailchimp-token` | The API token for your MailChimp account.                                                | `""`          |
-| `$MAILCHIMP_LIST`    | `--mailchimp-list`  | The ID of the MailChimp list.                                                            | `""`          |
+Additional configuration options are controlled through the following environment variables:
 
-### systemd Configuration
-The canonical way to run the site is through the [`systemd`][systemd] service manager to setup the environment, manage when the application is started, and monitor the process to keep it running. This can be done with a system file like the one below:
+| Environment Variable |                                       Description                                        | Default Value |
+|----------------------|------------------------------------------------------------------------------------------|---------------|
+| `$SLACK_TEAM`        | Slack team name, as found in the slack URL.                                              | `""`          |
+| `$SLACK_TOKEN`       | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
+| `$MAILCHIMP_TOKEN`   | The API token for your MailChimp account.                                                | `""`          |
+| `$MAILCHIMP_LIST`    | The ID of the MailChimp list.                                                            | `""`          |
 
-. The following 
-
-```apacheconf
-[Unit]
-Description=bellingham.codes Website
-
-[Service]
-ExecStart=/usr/local/bin/bellinghamcodes
-Restart=always
-User=root
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=bellinghamcodes
-Environment=PORT=80
-Environment=SLACK_TEAM=bellinghamcodes
-Environment=SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX
-Environment=MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1
-Environment=MAILCHIMP_LIST=XXXXXXXXXX
-
-[Install]
-WantedBy=multi-user.target
+For example:
+```sh
+docker run \
+    --detach \
+    --publish 8888:80 \
+    --env "SLACK_TEAM=bellinghamcodes" \
+    --env "SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX" \
+    --env "MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1" \
+    --env "MAILCHIMP_LIST=XXXXXXXXXX" \
+    tantalic/bellinghamcodes-website:latest
 ```
 
+## Running in Production
+The production site runs on a [Kubernetes][k8s] cluster. To deploy on Kubernetes copy the `kubernetes/secrets.example.yaml` to `kubernetes/secrets.yaml` and complete the required values. Then run:
+
+```sh
+cd kubernetes/
+./apply.sh
+```
 
 [go]: http://www.golang.org
 [glide]: https://glide.sh
-[systemd]: https://freedesktop.org/wiki/Software/systemd/
+[k8s]: http://kubernetes.io

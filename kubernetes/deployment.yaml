@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+        - image: tantalic/bellinghamcodes-website:latest
+          name: api
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: SLACK_TEAM
+              valueFrom:
+                secretKeyRef:
+                  name: slack
+                  key: team
+            - name: SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: slack
+                  key: token
+            - name: MAILCHIMP_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mailchimp
+                  key: token
+            - name: MAILCHIMP_LIST
+              valueFrom:
+                secretKeyRef:
+                  name: mailchimp
+                  key: list

@@ -11,16 +11,11 @@ run:
 install: bindata-assetfs
 	go install
 
-osx: bindata-assetfs
-	env GOOS=darwin GOARCH=amd64 go build -o build/bellinghamcodes-darwin_amd64
-	env GOOS=darwin GOARCH=386   go build -o build/bellinghamcodes-darwin_386
-
 linux: bindata-assetfs
-	env GOOS=linux GOARCH=amd64 go build -o build/bellinghamcodes-linux_amd64
-	env GOOS=linux GOARCH=386   go build -o build/bellinghamcodes-linux_386
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -tags netgo -ldflags '-w' -o build/bellinghamcodes-linux-amd64
 
-freebsd: bindata-assetfs
-	env GOOS=freebsd GOARCH=amd64 go build -o build/bellinghamcodes-freebsd_amd64
-	env GOOS=freebsd GOARCH=386   go build -o build/bellinghamcodes-freebsd_386
+docker: linux
+	docker build -t tantalic/bellinghamcodes-website:latest .
 
-all: osx linux freebsd
+update-ca:
+	curl --time-cond certs/ca-certificates.crt -o certs/ca-certificates.crt https://curl.haxx.se/ca/cacert.pem 
