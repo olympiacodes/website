@@ -24,13 +24,6 @@ To run for development purposes run:
 make run
 ```
 
-To cross-compile to another platform run one of the following:
-```sh
-make linux
-make freebsd
-make osx
-```
-
 ## Running (in Production)
 Running the site will require the setting of a number of options. These options can be set via command line flags or environment variables. 
 
