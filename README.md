@@ -34,14 +34,14 @@ make osx
 ## Running (in Production)
 Running the site will require the setting of a number of options. These options can be set via command line flags or environment variables. 
 
-|        Environment Variable        |         Flag        |                                       Description                                        | Default Value |
-|------------------------------------|---------------------|------------------------------------------------------------------------------------------|---------------|
-| `$HACK_BELLINGHAM_PORT`            | `--port`            | The TCP port to listen on.                                                               | `3000`        |
-| `$HACK_BELLINGHAM_HOST`            | `--host`            | The IP address/hostname to listen on.                                                    | All hosts     |
-| `$HACK_BELLINGHAM_SLACK_TEAM`      | `--slack-team`      | Slack team name, as found in the slack URL.                                              | `""`          |
-| `$HACK_BELLINGHAM_SLACK_TOKEN`     | `--slack-token`     | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
-| `$HACK_BELLINGHAM_MAILCHIMP_TOKEN` | `--mailchimp-token` | The API token for your MailChimp account.                                                | `""`          |
-| `$HACK_BELLINGHAM_MAILCHIMP_LIST`  | `--mailchimp-list`  | The ID of the MailChimp list.                                                            | `""`          |
+| Environment Variable |         Flag        |                                       Description                                        | Default Value |
+|----------------------|---------------------|------------------------------------------------------------------------------------------|---------------|
+| `$PORT`              | `--port`            | The TCP port to listen on.                                                               | `3000`        |
+| `$HOST`              | `--host`            | The IP address/hostname to listen on.                                                    | All hosts     |
+| `$SLACK_TEAM`        | `--slack-team`      | Slack team name, as found in the slack URL.                                              | `""`          |
+| `$SLACK_TOKEN`       | `--slack-token`     | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
+| `$MAILCHIMP_TOKEN`   | `--mailchimp-token` | The API token for your MailChimp account.                                                | `""`          |
+| `$MAILCHIMP_LIST`    | `--mailchimp-list`  | The ID of the MailChimp list.                                                            | `""`          |
 
 ### systemd Configuration
 The canonical way to run the site is through the [`systemd`][systemd] service manager to setup the environment, manage when the application is started, and monitor the process to keep it running. This can be done with a system file like the one below:
@@ -59,11 +59,11 @@ User=root
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=hackbellingham
-Environment=HACK_BELLINGHAM_PORT=80
-Environment=HACK_BELLINGHAM_SLACK_TEAM=hackbellingham
-Environment=HACK_BELLINGHAM_SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX
-Environment=HACK_BELLINGHAM_MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1
-Environment=HACK_BELLINGHAM_MAILCHIMP_LIST=XXXXXXXXXX
+Environment=PORT=80
+Environment=SLACK_TEAM=hackbellingham
+Environment=SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX
+Environment=MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1
+Environment=MAILCHIMP_LIST=XXXXXXXXXX
 
 [Install]
 WantedBy=multi-user.target

@@ -19,33 +19,33 @@ func main() {
 		cli.IntFlag{
 			Name:   "port",
 			Value:  3000,
-			EnvVar: "HACK_BELLINGHAM_PORT",
+			EnvVar: "PORT",
 			Usage:  "tcp port to listen on",
 		},
 		cli.StringFlag{
 			Name:   "host",
 			Value:  "",
-			EnvVar: "HACK_BELLINGHAM_HOST",
+			EnvVar: "HOST",
 			Usage:  "ip address/host to listen on",
 		},
 		cli.StringFlag{
 			Name:   "slack-team",
-			EnvVar: "HACK_BELLINGHAM_SLACK_TEAM",
+			EnvVar: "SLACK_TEAM",
 			Usage:  "slack team name, as found in the slack URL",
 		},
 		cli.StringFlag{
 			Name:   "slack-token",
-			EnvVar: "HACK_BELLINGHAM_SLACK_TOKEN",
+			EnvVar: "SLACK_TOKEN",
 			Usage:  "access token for your slack team",
 		},
 		cli.StringFlag{
 			Name:   "mailchimp-token",
-			EnvVar: "HACK_BELLINGHAM_MAILCHIMP_TOKEN",
+			EnvVar: "MAILCHIMP_TOKEN",
 			Usage:  "api token for your mailchimp account",
 		},
 		cli.StringFlag{
 			Name:   "mailchimp-list",
-			EnvVar: "HACK_BELLINGHAM_MAILCHIMP_LIST",
+			EnvVar: "MAILCHIMP_LIST",
 			Usage:  "id of the mailchimp list",
 		},
 	}
