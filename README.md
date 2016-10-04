@@ -1,12 +1,12 @@
-# HackBellingham.com [![Code Climate](https://codeclimate.com/github/hackbellingham/website/badges/gpa.svg)](https://codeclimate.com/github/hackbellingham/website) [![Build Status](https://travis-ci.org/hackbellingham/website.svg?branch=master)](https://travis-ci.org/hackbellingham/website)
+# bellingham.codes [![Code Climate](https://codeclimate.com/github/hackbellingham/website/badges/gpa.svg)](https://codeclimate.com/github/hackbellingham/website) [![Build Status](https://travis-ci.org/hackbellingham/website.svg?branch=master)](https://travis-ci.org/hackbellingham/website)
 
-## About Hack Bellingham
-Hack Bellingham is a social group dedicated to growing the local developer community.
+## About bellingham.codes
+bellingham.codes is a social group dedicated to growing the local developer community.
 
 We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.
 
 ## About 
-The primary purpose of this site is to automate the process for members to join the Hack Bellingham Slack team.
+The primary purpose of this site is to automate the process for members to join the bellingham.codes Slack team.
 
 ## Building and Running
 The website is built using [Go][go] and is 'go gettable'. Once you have your go environment setup you can get dependencies by running:
@@ -50,17 +50,17 @@ The canonical way to run the site is through the [`systemd`][systemd] service ma
 
 ```apacheconf
 [Unit]
-Description=Hack Bellingham Website
+Description=bellingham.codes Website
 
 [Service]
-ExecStart=/usr/local/bin/hackbellingham
+ExecStart=/usr/local/bin/bellinghamcodes
 Restart=always
 User=root
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=hackbellingham
+SyslogIdentifier=bellinghamcodes
 Environment=PORT=80
-Environment=SLACK_TEAM=hackbellingham
+Environment=SLACK_TEAM=bellinghamcodes
 Environment=SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX
 Environment=MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1
 Environment=MAILCHIMP_LIST=XXXXXXXXXX
