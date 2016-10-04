@@ -14,3 +14,5 @@ install: bindata-assetfs
 linux: bindata-assetfs
 	env GOOS=linux GOARCH=amd64 go build -o build/bellinghamcodes-linux-amd64
 
+docker: linux
+	docker build -t tantalic/bellinghamcodes-website:latest .
