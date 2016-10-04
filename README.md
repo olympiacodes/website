@@ -53,5 +53,14 @@ docker run \
     tantalic/bellinghamcodes-website:latest
 ```
 
+## Running in Production
+The production site runs on a [Kubernetes][k8s] cluster. To deploy on Kubernetes copy the `kubernetes/secrets.example.yaml` to `kubernetes/secrets.yaml` and complete the required values. Then run:
+
+```sh
+cd kubernetes/
+./apply.sh
+```
+
 [go]: http://www.golang.org
 [glide]: https://glide.sh
+[k8s]: http://kubernetes.io
