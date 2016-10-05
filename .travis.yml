@@ -11,4 +11,4 @@ install:
   - glide install
 
 script:
-  - go build
+  - make build
