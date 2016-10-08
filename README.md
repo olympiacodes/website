@@ -34,12 +34,15 @@ The docker image generated will expose port 80 running the website.
 
 Additional configuration options are controlled through the following environment variables:
 
-| Environment Variable |                                       Description                                        | Default Value |
-|----------------------|------------------------------------------------------------------------------------------|---------------|
-| `$SLACK_TEAM`        | Slack team name, as found in the slack URL.                                              | `""`          |
-| `$SLACK_TOKEN`       | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`          |
-| `$MAILCHIMP_TOKEN`   | The API token for your MailChimp account.                                                | `""`          |
-| `$MAILCHIMP_LIST`    | The ID of the MailChimp list.                                                            | `""`          |
+|   Environment Variable   |                                       Description                                        |    Default Value     |
+|--------------------------|------------------------------------------------------------------------------------------|----------------------|
+| `$ORGANIZATION_NAME`     | Name of the organization                                                                 | `"bellingham.codes"` |
+| `$SLACK_TEAM`            | Slack team name, as found in the slack URL.                                              | `""`                 |
+| `$SLACK_TOKEN`           | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`                 |
+| `$MAILCHIMP_TOKEN`       | The API token for your MailChimp account.                                                | `""`                 |
+| `$MAILCHIMP_LIST`        | The ID of the MailChimp list.                                                            | `""`                 |
+| `$MEETUP_NAME`           | Meetup.com group URL name to fetch upcoming events from.                                 | `""`                 |
+| `$MEETUP_FETCH_INTERVAL` | Interval, in minutes, to fetch upcoming event information from Meetup.com                | `30`                 |
 
 For example:
 ```sh
