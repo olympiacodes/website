@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/bellinghamcodes/website/internal/meetup"
 	"github.com/codegangsta/cli"
 )
 
@@ -48,18 +51,74 @@ func main() {
 			EnvVar: "MAILCHIMP_LIST",
 			Usage:  "id of the mailchimp list",
 		},
+		cli.StringFlag{
+			Name:   "meetup",
+			EnvVar: "MEETUP_NAME",
+			Usage:  "url name of the meetup.com group",
+		},
+		cli.IntFlag{
+			Name:   "meetup-fetch-interval",
+			EnvVar: "MEETUP_FETCH_INTERVAL",
+			Usage:  "fetch interval in minutes for meetup event information",
+			Value:  30,
+		},
+		cli.StringFlag{
+			Name:   "organization-name",
+			Value:  "bellingham.codes",
+			EnvVar: "ORGANIZATION_NAME",
+			Usage:  "name of the organization",
+		},
 	}
 
-	app.Action = serve
+	app.Action = run
 
 	app.Run(os.Args)
 }
 
-func serve(c *cli.Context) {
+func run(c *cli.Context) error {
+	groupName := c.String("meetup")
+	interval := time.Duration(c.Int("meetup-fetch-interval"))
+	homePageServer := &HomePageServer{
+		GroupName: c.String("organization-name"),
+	}
+
+	eventsChan := make(chan []meetup.Event)
+	go meetupLoop(groupName, eventsChan, time.Minute*interval)
+	go func() {
+		for {
+			homePageServer.Events = <-eventsChan
+		}
+	}()
+
+	return serve(c, homePageServer)
+}
+
+func serve(c *cli.Context, homePageServer http.Handler) error {
 	http.HandleFunc("/request-invite", inviteRequestHandler(c))
 	http.HandleFunc("/status", statusHandler(c))
-	http.Handle("/", http.FileServer(assetFS()))
+	http.Handle("/", homePageServer)
 
 	addr := fmt.Sprintf("%s:%d", c.String("host"), c.Int("port"))
-	http.ListenAndServe(addr, nil)
+	log.Printf("Starting server on %s\n", addr)
+	return http.ListenAndServe(addr, nil)
+}
+
+func meetupLoop(groupName string, c chan []meetup.Event, interval time.Duration) {
+	client := meetup.Client{
+		GroupURLName: groupName,
+	}
+
+	for {
+		events, err := client.FetchEvents()
+		if err != nil {
+			log.Printf("Meetup.com fetch error: %s\n", err)
+			goto SLEEP
+		}
+
+		log.Printf("Successfully fetched %d events from Meetup.com", len(events))
+		c <- events
+
+	SLEEP:
+		time.Sleep(interval)
+	}
 }
