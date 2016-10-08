@@ -16,6 +16,8 @@ spec:
             - containerPort: 80
               protocol: TCP
           env:
+            - name: MEETUP_NAME
+              value: bellinghamcodes
             - name: SLACK_TEAM
               valueFrom:
                 secretKeyRef:
