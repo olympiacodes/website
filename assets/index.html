@@ -6,27 +6,65 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
 		html, body {
-			max-width: 840px;
-			margin: 0 auto;
-			padding: 10px 20px 20px;
+			margin: 0;
+			padding: 0;
 			font-family: 'Roboto Slab', Arial, serif; 
 			font-weight: 300;
 			font-size: 36px;
 			background-color: white;
 			color: rgb(20,20,20);
 		}
+		section {
+			padding: 1em 0;
+		}
+		section#intro p {
+			font-size: 1em;
+			font-size: 1rem;
+		}
+		#intro {
+			padding-top: 0;
+			padding-bottom: .25em;
+		}
+		section#slack, section#events {
+			background-color: rgb(60, 171, 99);
+			color: white;
+		}
+		section#events {
+			background-color: rgb(51, 131, 184);
+		}
+		.content, header {
+			max-width: 840px;
+			margin: 0 auto;
+		}
 		#logo {
 			width: 400px;
 			max-width: 94%;
-			margin: .5em 0;
+			margin: .5em 0 0;
 		}
-		h1, h2	 {
+		h1, h2, h3	 {
 			font-weight: 400;
 			font-size: 1em;
 			font-size: 1rem;
 		}
 		h2 {
 			font-weight: 300;
+		}
+		h3 {
+			font-size: .666666667em;
+			font-size: .666666667rem;
+			margin: 0;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+		p, li {
+			font-size: .611111111em;
+			font-size: .611111111rem;
+		}
+		li {
+			margin: 0 0 1em 0;
+			list-style: none;
 		}
 		input, button {
 			font-size: .8em;
@@ -54,8 +92,8 @@
 		button {
 			border-radius: 1.5em;
 			border-style: none;
-			color: white;
-			background-color: rgb(60, 171, 99);
+			background-color: white;
+			color: rgb(60, 171, 99);
 			margin-top: .5em;
 			padding: .5em 1em;
 
@@ -68,36 +106,27 @@
 			background-color: rgba(53,74,93,.5);
 			cursor: wait;
 		}
-
 		.success, .failure {
 			background-color: rgba(60, 171, 99, .2);
 			border: 1px solid rgb(60, 171, 99);
 			color: rgb(60, 171, 99);
 			padding: 0 1em;
 		}
-
 		.failure {
 			background-color: rgb(241, 222, 222);
 			border-color: rgb(195, 29, 70);
 			color: rgb(195, 29, 70);
 		}
-
-		.events {
-			margin-top: 2em;
-		}
-		.events li {
-			list-style: none;
+		#events p {
+			margin: 0 0 2em 0;
 		}
 
-		.events p {
-			font-size: 22px;
+		@media (max-width: 840px) {
+			section, header {
+				padding-left: 1em;
+				padding-right: 1em;
+			}
 		}
-
-		.events p strong {
-			font-size: 24px;
-			font-weight: 400;
-		}
-
 		@media (max-width:600px) {
 			html, body {
 				font-size: 28px;
@@ -119,40 +148,46 @@
 
 	<main>
 		
-		<h1>{{ .GroupName }} is a social group dedicated to growing the local developer community.</h1>
+		<section id="intro">
+			<div class="content">
+				<h1>{{ .GroupName }} is a social group dedicated to growing the local developer community.</h1>
 
-		<p>We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.</p>
+				<p>We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.</p>	
+			</div>
+		</section>
 
-		<div id="status-message"></div>
+		<section id="slack">
+			<div class="content">
+				<div id="status-message"></div>
 
-		<div id="slack-form">
-			<h2>Join us on Slack:</h2>
-			<input type="text" placeholder="email address" id="email-address" autofocus>
-			
-			<label for="mailing-list-opt-in">
-				<input type="checkbox" id="mailing-list-opt-in" name="mailing-list-opt-in" checked>
-				Also add me to the {{ .GroupName }} mailing list. (Volume will be low. We hate superfluous email just as much as you do.)
-			</label>
+				<h2>Join us on Slack:</h2>
+				<input type="text" placeholder="email address" id="email-address" autofocus>
+				
+				<label for="mailing-list-opt-in">
+					<input type="checkbox" id="mailing-list-opt-in" name="mailing-list-opt-in" checked>
+					Also add me to the {{ .GroupName }} mailing list. (Volume will be low. We hate superfluous email just as much as you do.)
+				</label>
 
-			<button onclick="requestInvite();" id="invite-button">Send me an invite</button>
-		</div>
+				<button onclick="requestInvite();" id="invite-button">Send me an invite</button>
+			</div>
+		</section>
 
 		{{with .Events}}
-		<section class="events">
-			<h2>Upcoming Events:</h2>
-			<ul>
-				{{range .}}
-				<li>
-					<p>
-						<strong>{{ .Time.Format  "Jan 02, 3:04 PM" }}: {{ .Name }}</strong>
-						{{with .Venue}}<br>
+		<section id="events">
+			<div class="content">
+				<h2>Upcoming Events:</h2>
+				<ul>
+					{{range .}}
+					<li>
+						<h3>{{ .Time.Format  "Jan 02, 3:04 PM" }}: {{ .Name }}</h3>
+						{{with .Venue}}<p>
 							{{ .Name }}<br>
 							{{ .AddressLine1 }}
-						{{end}}
-					</p>
-				</li>
-				{{end}}
-			</ul>
+						</p>{{end}}
+					</li>
+					{{end}}
+				</ul>
+			</div>
 		</section>
 		{{end}}
 	</main>
@@ -176,8 +211,7 @@
 
 
 			xhr.onload = function() {
-				var statusMessage = document.getElementById("status-message"),
-					slackForm = document.getElementById("slack-form");
+				var statusMessage = document.getElementById("status-message");
 
 				if (xhr.status === 200) {
 					statusMessage.className = "success"
