@@ -68,6 +68,21 @@ func main() {
 			EnvVar: "ORGANIZATION_NAME",
 			Usage:  "name of the organization",
 		},
+		cli.StringFlag{
+			Name:   "twitter",
+			EnvVar: "TWITTER_USERNAME",
+			Usage:  "twitter account to link to in footer",
+		},
+		cli.StringFlag{
+			Name:   "instagram",
+			EnvVar: "INSTAGRAM_USERNAME",
+			Usage:  "instagram account to link to in footer",
+		},
+		cli.StringFlag{
+			Name:   "facebook",
+			EnvVar: "FACEBOOK_PAGE",
+			Usage:  "facebook page to link to in footer",
+		},
 	}
 
 	app.Action = run
@@ -79,7 +94,10 @@ func run(c *cli.Context) error {
 	groupName := c.String("meetup")
 	interval := time.Duration(c.Int("meetup-fetch-interval"))
 	homePageServer := &HomePageServer{
-		GroupName: c.String("organization-name"),
+		GroupName:         c.String("organization-name"),
+		TwitterUsername:   c.String("twitter"),
+		InstagramUsername: c.String("instagram"),
+		FacebookPage:      c.String("facebook"),
 	}
 
 	eventsChan := make(chan []meetup.Event)

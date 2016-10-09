@@ -18,6 +18,12 @@ spec:
           env:
             - name: MEETUP_NAME
               value: bellinghamcodes
+            - name: TWITTER_USERNAME
+              value: bellinghamcodes
+            - name: INSTAGRAM_USERNAME
+              value: bellinghamcodes
+            - name: FACEBOOK_PAGE
+              value: bellinghamcodes
             - name: SLACK_TEAM
               valueFrom:
                 secretKeyRef:

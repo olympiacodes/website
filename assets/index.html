@@ -13,7 +13,7 @@
 			font-weight: 300;
 			font-size: 36px;
 			background-color: white;
-			color: rgb(20,20,20);
+			color: rgb(53, 74, 93);
 		}
 		section {
 			padding: 1em 0;
@@ -33,9 +33,13 @@
 		section#events {
 			background-color: rgb(51, 131, 184);
 		}
-		.content, header {
+		.content, header, footer {
 			max-width: 840px;
 			margin: 0 auto;
+		}
+		footer {
+			margin-bottom: .5em;
+			margin-top: .5em;
 		}
 		#logo {
 			width: 400px;
@@ -66,6 +70,13 @@
 		li {
 			margin: 0 0 1em 0;
 			list-style: none;
+		}
+		a, a:hover, a:visited {
+			color: rgb(51, 131, 184);
+			text-decoration: none;
+		}
+		a:hover {
+			text-decoration: underline;
 		}
 		input, button {
 			font-size: .8em;
@@ -121,7 +132,24 @@
 		#events p {
 			margin: 0 0 2em 0;
 		}
-
+		#social-networks {
+			text-align: center;
+			line-height: 1;
+		}
+		#social-networks li {
+			display: inline;
+			font-size: .8em;
+		}
+		#social-networks a {
+			color: #999;
+		}
+		#social-networks a:hover {
+			color: rgb(51, 131, 184);
+			text-decoration: none;
+		}
+		#social-networks a .name {
+			display: none;
+		}
 		@media (max-width: 840px) {
 			section, header {
 				padding-left: 1em;
@@ -192,6 +220,22 @@
 		</section>
 		{{end}}
 	</main>
+
+	{{if or .TwitterUsername .FacebookPage .InstagramUsername }}
+	<footer>
+		<ul id="social-networks">
+			{{with .TwitterUsername}}
+			<li><a href="https://twitter.com/{{ . }}" title="@{{ . }} on Twitter" class="icon-twitter"><span class="name">Twitter</span></a></li>
+			{{end}}
+			{{with .FacebookPage}}
+			<li><a href="https://www.facebook.com/{{ . }}" title="{{ . }} on Facebook" class="icon-facebook"><span class="name">Facebook</span></a></li>
+			{{end}}
+			{{with .InstagramUsername}}
+			<li><a href="https://www.instagram.com/{{ . }}/" title="@{{ . }} on Instagram" class="icon-instagram"><span class="name">Instagram</span></a></li>
+			{{end}}
+		</ul>
+	</footer>
+	{{end}}
 
 	<script type="text/javascript">
 		function requestInvite() {
