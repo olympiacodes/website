@@ -7,6 +7,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"sync"
 
@@ -33,6 +34,8 @@ func inviteRequestHandler(c *cli.Context) handleFunc {
 		var invitation invitationRequest
 		err := decoder.Decode(&invitation)
 		if err != nil {
+			log.Printf("Error parsing JSON request: %s", err.Error())
+
 			jsonResponse(w, invitationResponse{
 				Message:   "There was an error processing your invitation. Please try again later.",
 				ErrorCode: 1,
@@ -68,6 +71,14 @@ func inviteRequestHandler(c *cli.Context) handleFunc {
 				message string
 				code    int
 			)
+
+			if slackErr != nil {
+				log.Printf("Error inviting %s to slack team: %s", invitation.Email, slackErr.Error())
+			}
+
+			if chimpErr != nil {
+				log.Printf("Error adding %s to mailing list: %s", invitation.Email, chimpErr.Error())
+			}
 
 			if slackErr != nil && chimpErr != nil {
 				message = "There was an error processing your invitation. Please try again later."
