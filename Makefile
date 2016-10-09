@@ -2,10 +2,10 @@ build: bindata-assetfs
 	go build
 
 bindata-assetfs:
-	go-bindata-assetfs assets
+	go-bindata-assetfs assets assets/*/**
 
 run:
-	go-bindata-assetfs -debug assets
+	go-bindata-assetfs -debug assets assets/*/**
 	go run *.go
 
 install: bindata-assetfs
