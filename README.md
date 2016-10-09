@@ -37,6 +37,9 @@ Additional configuration options are controlled through the following environmen
 |   Environment Variable   |                                       Description                                        |    Default Value     |
 |--------------------------|------------------------------------------------------------------------------------------|----------------------|
 | `$ORGANIZATION_NAME`     | Name of the organization                                                                 | `"bellingham.codes"` |
+| `$TWITTER_USERNAME`      | Twitter user to link to in site footer.                                                  | `""`                 |
+| `$INSTAGRAM_USERNAME`    | Instagram user to link to in site footer.                                                | `""`                 |
+| `$FACEBOOK_PAGE`         | Facebook page to link to in site footer.                                                 | `""`                 |
 | `$SLACK_TEAM`            | Slack team name, as found in the slack URL.                                              | `""`                 |
 | `$SLACK_TOKEN`           | Access token for your slack team. It can be generated at https://api.slack.com/web#auth. | `""`                 |
 | `$MAILCHIMP_TOKEN`       | The API token for your MailChimp account.                                                | `""`                 |
@@ -53,6 +56,10 @@ docker run \
     --env "SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX" \
     --env "MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1" \
     --env "MAILCHIMP_LIST=XXXXXXXXXX" \
+    --env "ORGANIZATION_NAME=bellingham.codes"
+    --env "TWITTER_USERNAME=bellinghamcodes" \
+    --env "INSTAGRAM_USERNAME=bellinghamcodes" \
+    --env "FACEBOOK_PAGE=bellinghamcodes" \
     tantalic/bellinghamcodes-website:latest
 ```
 

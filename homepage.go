@@ -12,6 +12,10 @@ type HomePageServer struct {
 
 	GroupName string
 	Events    []meetup.Event
+
+	TwitterUsername   string
+	InstagramUsername string
+	FacebookPage      string
 }
 
 func (s *HomePageServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
