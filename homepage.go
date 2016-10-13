@@ -16,6 +16,7 @@ type HomePageServer struct {
 	TwitterUsername   string
 	InstagramUsername string
 	FacebookPage      string
+	MeetupGroupName   string
 }
 
 func (s *HomePageServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
