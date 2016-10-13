@@ -221,7 +221,7 @@
 		{{end}}
 	</main>
 
-	{{if or .TwitterUsername .FacebookPage .InstagramUsername }}
+	{{if or .TwitterUsername .FacebookPage .InstagramUsername .MeetupGroupName }}
 	<footer>
 		<ul id="social-networks">
 			{{with .TwitterUsername}}
@@ -232,6 +232,9 @@
 			{{end}}
 			{{with .InstagramUsername}}
 			<li><a href="https://www.instagram.com/{{ . }}/" title="@{{ . }} on Instagram" class="icon-instagram"><span class="name">Instagram</span></a></li>
+			{{end}}
+			{{with .MeetupGroupName}}
+			<li><a href="http://www.meetup.com/{{ . }}/" title="@{{ . }} on Meetup" class="icon-meetup"><span class="name">Meetup</span></a></li>
 			{{end}}
 		</ul>
 	</footer>

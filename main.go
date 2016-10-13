@@ -98,6 +98,7 @@ func run(c *cli.Context) error {
 		TwitterUsername:   c.String("twitter"),
 		InstagramUsername: c.String("instagram"),
 		FacebookPage:      c.String("facebook"),
+		MeetupGroupName:   groupName,
 	}
 
 	eventsChan := make(chan []meetup.Event)
