@@ -16,7 +16,7 @@ glide install
 
 Once you have dependencies installed you can build for your current platform by running:
 ```sh
-make
+make build
 ```
 
 To run for development purposes run:
