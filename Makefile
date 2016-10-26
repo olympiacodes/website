@@ -11,7 +11,7 @@ docker: linux ## Builds docker image
 build: bindata-assetfs ## Build for current platform
 	go build
 
-linux: bindata-assetfs ## Builds linux binary
+linux: bindata-assetfs
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -tags netgo -ldflags '-w' -o build/bellinghamcodes-linux-amd64
 
 install: bindata-assetfs ## Build and install on current machine
