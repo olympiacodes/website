@@ -17,7 +17,7 @@ func (c *Client) FetchEvents() ([]Event, error) {
 	params.Set("group_urlname", c.GroupURLName)
 	params.Set("status", "upcoming")
 	params.Set("page", "15")
-	params.Set("only", "name,time,utc_offset,timezone,venue.name,venue.address_1")
+	params.Set("only", "name,time,utc_offset,timezone,venue.name,venue.address_1,venue.city,venue.state,venue.zip")
 
 	var body struct {
 		Events []Event `json:"results"`
@@ -72,4 +72,7 @@ func (e *Event) Time() time.Time {
 type Venue struct {
 	Name         string `json:"name"`
 	AddressLine1 string `json:"address_1"`
+	City         string `json:"city"`
+	State        string `json:"state"`
+	ZipCode      string `json:"zip"`
 }
