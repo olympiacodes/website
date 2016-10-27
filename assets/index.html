@@ -221,15 +221,15 @@
 					<li itemscope itemtype="http://schema.org/Event">
 						<h3>{{ .Time.Format  "Jan 02, 3:04 PM" }}: <span itemprop="name">{{ .Name }}</span></h3>
 						<meta itemprop="startDate" content="{{ .Time.Format  "2006-01-02T15:04:05-0700" }}">
-						{{with .Venue}}<p itemscope itemtype="http://schema.org/Place">
+						{{with .Venue}}<p itemprop="location" itemscope itemtype="http://schema.org/Place">
 							<span itemprop="name">{{ .Name }}</span><br>
 							<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 								<span itemprop="streetAddress">{{ .AddressLine1 }}</span><br>
 								<span itemprop="addressLocality">{{ .City }}</span>,
 								<span itemprop="addressRegion">{{ .State }}</span> <span itemprop="postalCode">{{ .ZipCode }}</span>
 							</span>
-							
 						</p>{{end}}
+						<meta itemprop="url" content="http://bellingham.codes/">
 					</li>
 					{{end}}
 				</ul>
