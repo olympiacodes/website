@@ -5,6 +5,9 @@ go:
   - 1.9
   - tip
 
+before_script:
+  - make vet
+
 install:
   - go get -v github.com/jteeuwen/go-bindata/...
   - go get -v github.com/elazarl/go-bindata-assetfs/...
