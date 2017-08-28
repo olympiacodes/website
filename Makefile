@@ -9,7 +9,7 @@ run: ## Run in development mode
 	go run *.go
 
 docker: linux ## Builds docker image
-	docker build -t tantalic/bellinghamcodes-website:latest .
+	docker build -t tantalic/bellinghamcodes-website:$(VERSION) .
 
 vet: ## Run tests
 	go vet $(shell go list ${PKG}/... | grep -v /vendor/)
