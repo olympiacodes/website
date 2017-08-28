@@ -61,7 +61,7 @@ type Event struct {
 	Name            string `json:"name"`
 	Timestamp       int64  `json:"time"`
 	TimestampOffset int    `json:"utc_offset"`
-	Venue           Venue  `json:"venue""`
+	Venue           Venue  `json:"venue"`
 	URL             string `json:"event_url"`
 }
 
