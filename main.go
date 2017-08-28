@@ -13,9 +13,11 @@ import (
 
 type handleFunc func(w http.ResponseWriter, req *http.Request)
 
+var version = "Unknown"
+
 func main() {
 	app := cli.NewApp()
-	app.Version = "1.6.1"
+	app.Version = version
 	app.Usage = "bellingam.codes website"
 
 	app.Flags = []cli.Flag{
@@ -118,7 +120,7 @@ func serve(c *cli.Context, homePageServer http.Handler) error {
 	http.Handle("/", homePageServer)
 
 	addr := fmt.Sprintf("%s:%d", c.String("host"), c.Int("port"))
-	log.Printf("Starting server on %s\n", addr)
+	log.Printf("Starting bellingham.codes v%s on %s\n", version, addr)
 	return http.ListenAndServe(addr, nil)
 }
 
