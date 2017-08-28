@@ -41,6 +41,9 @@
 			background-color: rgb(60, 171, 99);
 			color: white;
 		}
+		section#slack a, section#events a { 
+			color: white;
+		}
 		section#events {
 			background-color: rgb(51, 131, 184);
 		}
@@ -219,7 +222,7 @@
 				<ul>
 					{{range .}}
 					<li itemscope itemtype="http://schema.org/Event">
-						<h3>{{ .Time.Format  "Jan 02, 3:04 PM" }}: <span itemprop="name">{{ .Name }}</span></h3>
+						<h3><a href="{{ .URL }}">{{ .Time.Format  "Jan 02, 3:04 PM" }}: <span itemprop="name">{{ .Name }}</span></a></h3>
 						<meta itemprop="startDate" content="{{ .Time.Format  "2006-01-02T15:04:05-0700" }}">
 						{{with .Venue}}<p itemprop="location" itemscope itemtype="http://schema.org/Place">
 							<span itemprop="name">{{ .Name }}</span><br>
