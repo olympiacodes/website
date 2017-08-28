@@ -1,4 +1,5 @@
-.PHONY: help
+GOVERSION := 1.9.0
+.PHONY: help docker build linux install update-ca bindata-assetfs
 .DEFAULT_GOAL := help
 
 run: ## Run in development mode
@@ -12,7 +13,7 @@ build: bindata-assetfs ## Build for current platform
 	go build
 
 linux: bindata-assetfs
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -a -tags netgo -ldflags '-w' -o build/bellinghamcodes-linux-amd64
+	docker run --rm -v "${PWD}":/go/src/github.com/bellinghamcodes/website -w /go/src/github.com/bellinghamcodes/website -e "CGO_ENABLED=0" -e "GOOS=linux" -e "GOARCH=amd64" golang:$(GOVERSION) go build -v -a -tags netgo -ldflags '-w' -o build/bellinghamcodes-linux-amd64
 
 install: bindata-assetfs ## Build and install on current machine
 	go install
