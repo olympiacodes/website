@@ -30,11 +30,11 @@ func (c *Client) FetchEvents() ([]Event, error) {
 	return body.Events, nil
 }
 
-func (c *Client) apiRequest(method string, params url.Values, v interface{}) error {
+func (c *Client) apiRequest(path string, params url.Values, v interface{}) error {
 	u := url.URL{
 		Scheme:   "https",
 		Host:     "api.meetup.com",
-		Path:     "/2/events",
+		Path:     path,
 		RawQuery: params.Encode(),
 	}
 
