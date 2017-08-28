@@ -1,6 +1,0 @@
-package: .
-import:
-- package: github.com/codegangsta/cli
-- package: github.com/elazarl/go-bindata-assetfs
-- package: github.com/mnbbrown/mailchimp
-- package: github.com/nlopes/slack

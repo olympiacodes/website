@@ -9,9 +9,9 @@ We are committed to providing a friendly, safe and welcoming environment for exp
 The primary purpose of this site is to automate the process for members to join the bellingham.codes Slack team.
 
 ## Building and Running
-The website is built using [Go][go] with dependencies managed through [Glide][glide]. Once you have your go environment setup and glide installed you can get dependencies by running:
+The website is built using [Go][go] with dependencies managed through the [dep][dep] tool. Once you have your go environment setup and dep installed you can get dependencies by running:
 ```sh
-glide install
+dep ensure
 ```
 
 Once you have dependencies installed you can build for your current platform by running:
@@ -72,5 +72,5 @@ cd kubernetes/
 ```
 
 [go]: http://www.golang.org
-[glide]: https://glide.sh
+[dep]: https://github.com/golang/dep
 [k8s]: http://kubernetes.io
