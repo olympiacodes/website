@@ -225,8 +225,8 @@
 							<span itemprop="name">{{ .Name }}</span><br>
 							<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 								<span itemprop="streetAddress">{{ .AddressLine1 }}</span><br>
-								<span itemprop="addressLocality">{{ .City }}</span>,
-								<span itemprop="addressRegion">{{ .State }}</span> <span itemprop="postalCode">{{ .ZipCode }}</span>
+								<span itemprop="addressLocality">{{ .City }}</span>{{if .State}},
+								<span itemprop="addressRegion">{{ .State }}</span>{{end}}{{if .ZipCode}} <span itemprop="postalCode">{{ .ZipCode }}</span>{{end}}
 							</span>
 						</p>{{end}}
 						<meta itemprop="url" content="http://bellingham.codes/">
