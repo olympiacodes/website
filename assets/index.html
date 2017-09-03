@@ -231,7 +231,7 @@
 								<span itemprop="addressLocality">{{ .City }}</span>{{if .State}},
 								<span itemprop="addressRegion">{{ .State }}</span>{{end}}{{if .ZipCode}} <span itemprop="postalCode">{{ .ZipCode }}</span>{{end}}
 							</span>
-						</p>{{end}}
+						</p>{{else}}<p>Location to be announced</p>{{end}}
 						<meta itemprop="url" content="http://bellingham.codes/">
 					</li>
 					{{end}}
