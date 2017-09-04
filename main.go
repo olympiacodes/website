@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/bellinghamcodes/website/internal/instagram"
 	"github.com/bellinghamcodes/website/internal/meetup"
 	"github.com/codegangsta/cli"
 )
@@ -80,6 +81,18 @@ func main() {
 			EnvVar: "INSTAGRAM_USERNAME",
 			Usage:  "instagram account to link to in footer",
 		},
+		cli.IntFlag{
+			Name:   "instagram-fetch-interval",
+			EnvVar: "INSTAGRAM_FETCH_INTERVAL",
+			Usage:  "fetch interval in minutes for instagram photos",
+			Value:  30,
+		},
+		cli.IntFlag{
+			Name:   "instagram-count",
+			EnvVar: "INSTAGRAM_COUNT",
+			Usage:  "maximum number of photos to show from instagram",
+			Value:  9,
+		},
 		cli.StringFlag{
 			Name:   "facebook",
 			EnvVar: "FACEBOOK_PAGE",
@@ -94,20 +107,32 @@ func main() {
 
 func run(c *cli.Context) error {
 	groupName := c.String("meetup")
+	instagramUser := c.String("instagram")
 	interval := time.Duration(c.Int("meetup-fetch-interval"))
 	homePageServer := &HomePageServer{
 		GroupName:         c.String("organization-name"),
 		TwitterUsername:   c.String("twitter"),
-		InstagramUsername: c.String("instagram"),
+		InstagramUsername: instagramUser,
 		FacebookPage:      c.String("facebook"),
 		MeetupGroupName:   groupName,
 	}
 
 	eventsChan := make(chan []meetup.Event)
 	go meetupLoop(groupName, eventsChan, time.Minute*interval)
+
+	imagesChan := make(chan []Image)
+	imagesInterval := time.Duration(c.Int("instagram-fetch-interval"))
+	max := c.Int("instagram-count")
+	go instagramLoop(instagramUser, imagesChan, max, time.Minute*imagesInterval)
+
 	go func() {
 		for {
-			homePageServer.Events = <-eventsChan
+			select {
+			case events := <-eventsChan:
+				homePageServer.Events = events
+			case images := <-imagesChan:
+				homePageServer.Images = images
+			}
 		}
 	}()
 
@@ -138,6 +163,51 @@ func meetupLoop(groupName string, c chan []meetup.Event, interval time.Duration)
 
 		log.Printf("Successfully fetched %d events from Meetup.com", len(events))
 		c <- events
+
+	SLEEP:
+		time.Sleep(interval)
+	}
+}
+
+func instagramLoop(username string, c chan []Image, max int, interval time.Duration) {
+	client := instagram.Client{}
+
+	for {
+		var images []Image
+		count := 0
+		r, err := client.MediaForUser(username)
+
+		if err != nil {
+			log.Printf("Instagram fetch error: %s\n", err)
+			goto SLEEP
+		}
+
+		if r.Status != instagram.StatosOK {
+			log.Printf("Instagram returned non-ok status: %s\n", r.Status)
+			goto SLEEP
+		}
+
+		for _, m := range r.Media {
+			img, ok := m.Images[instagram.ImageSizeStandardResolution]
+			if !ok {
+				continue
+			}
+
+			images = append(images, Image{
+				Src:  img.URL,
+				Link: m.URL,
+				Alt:  m.Caption.Text,
+			})
+			count++
+
+			// Limit based on max
+			if count >= max {
+				break
+			}
+		}
+
+		log.Printf("Successfully fetched %d images from Instagram", len(images))
+		c <- images
 
 	SLEEP:
 		time.Sleep(interval)

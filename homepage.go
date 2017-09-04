@@ -12,11 +12,18 @@ type HomePageServer struct {
 
 	GroupName string
 	Events    []meetup.Event
+	Images    []Image
 
 	TwitterUsername   string
 	InstagramUsername string
 	FacebookPage      string
 	MeetupGroupName   string
+}
+
+type Image struct {
+	Src  string
+	Link string
+	Alt  string
 }
 
 func (s *HomePageServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
