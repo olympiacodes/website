@@ -1,5 +1,5 @@
 PKG := github.com/bellinghamcodes/website
-GOVERSION := 1.9.1
+GOVERSION := 1.10.0
 VERSION := $(shell git describe --always --dirty)
 .PHONY: help docker build linux install update-ca bindata-assetfs
 .DEFAULT_GOAL := help
