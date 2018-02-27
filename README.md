@@ -1,4 +1,4 @@
-# bellingham.codes [![Code Climate](https://codeclimate.com/github/bellinghamcodes/website/badges/gpa.svg)](https://codeclimate.com/github/bellinghamcodes/website) [![Build Status](https://travis-ci.org/bellinghamcodes/website.svg?branch=master)](https://travis-ci.org/bellinghamcodes/website)
+# bellingham.codes [![Go Report Card](https://goreportcard.com/badge/github.com/bellinghamcodes/website)](https://goreportcard.com/report/github.com/bellinghamcodes/website) [![Build Status](https://travis-ci.org/bellinghamcodes/website.svg?branch=master)](https://travis-ci.org/bellinghamcodes/website)
 
 ## About bellingham.codes
 bellingham.codes is a social group dedicated to growing the local developer community.
