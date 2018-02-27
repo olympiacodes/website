@@ -48,5 +48,10 @@ func (s *HomePageServer) handleIndex(rw http.ResponseWriter, req *http.Request) 
 	}
 
 	t, err := template.New("homepage").Parse(string(templateData))
+	if err != nil {
+		rw.Write([]byte("Error processing request, please try again later."))
+		return
+	}
+
 	t.Execute(rw, s)
 }
