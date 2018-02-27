@@ -175,28 +175,21 @@ func instagramLoop(username string, c chan []Image, max int, interval time.Durat
 	for {
 		var images []Image
 		count := 0
-		r, err := client.MediaForUser(username)
-
+		media, err := client.MediaForUser(username)
 		if err != nil {
 			log.Printf("Instagram fetch error: %s\n", err)
 			goto SLEEP
 		}
 
-		if r.Status != instagram.StatosOK {
-			log.Printf("Instagram returned non-ok status: %s\n", r.Status)
-			goto SLEEP
-		}
-
-		for _, m := range r.Media {
-			img, ok := m.Images[instagram.ImageSizeStandardResolution]
-			if !ok {
+		for _, m := range media {
+			// Skip non-images
+			if m.Type != instagram.ImageMediaType {
 				continue
 			}
-
 			images = append(images, Image{
-				Src:  img.URL,
-				Link: m.URL,
-				Alt:  m.Caption.Text,
+				Src:  m.Thumbnail,
+				Link: "https://www.instagram.com/" + username + "/",
+				Alt:  m.Caption,
 			})
 			count++
 

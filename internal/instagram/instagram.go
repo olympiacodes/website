@@ -9,73 +9,55 @@ import (
 
 type Client struct{}
 
-func (c *Client) MediaForUser(username string) (MediaResponse, error) {
-	var media MediaResponse
-
-	res, err := http.Get("https://www.instagram.com/" + username + "/media/")
+func (c *Client) MediaForUser(username string) ([]Media, error) {
+	res, err := http.Get("https://www.instagram.com/" + username + "/?__a=1")
 	if err != nil {
-		return media, err
+		return []Media{}, err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return media, fmt.Errorf("API returned non-200 status code: %d", res.StatusCode)
+		return []Media{}, fmt.Errorf("API returned non-200 status code: %d", res.StatusCode)
 	}
 
 	defer res.Body.Close()
 	data, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return media, err
+		return []Media{}, err
 	}
 
-	err = json.Unmarshal(data, &media)
+	var r UserResponse
+	err = json.Unmarshal(data, &r)
 	if err != nil {
-		return media, err
+		return []Media{}, err
 	}
 
-	return media, nil
+	fmt.Printf("Media: %+v\n", r.User.Media.Nodes)
 
+	return r.User.Media.Nodes, nil
 }
 
-type MediaResponse struct {
-	Media         []Media `json:"items"`
-	MoreAvailable bool    `json:"more_available"`
-	Status        Status  `json:"status"`
+type UserResponse struct {
+	User User `json:"user"`
 }
-
-type Status string
-
-const (
-	StatosOK = Status("ok")
-)
+type User struct {
+	Username  string `json:"username"`
+	Biography string `json:"biography"`
+	Media     struct {
+		Nodes []Media `json:"nodes"`
+	} `json:"media"`
+}
 
 type Media struct {
-	ID      string              `json:"id"`
-	Code    string              `json:"code"`
-	URL     string              `json:"link"`
-	Type    string              `json:"type"`
-	Caption Caption             `json:"caption"`
-	Images  map[ImageSize]Image `json:"images"`
+	ID         string    `json:"id"`
+	Type       MediaType `json:"__typename"`
+	Dimensions struct {
+		Width  int
+		Height int
+	} `json:"dimensions"`
+	Thumbnail string `json:"thumbnail_src"`
+	Caption   string `json:"caption"`
 }
 
 type MediaType string
 
-const ImageMediaType = MediaType("image")
-
-type ImageSize string
-
-const (
-	ImageSizeThumbnail          = ImageSize("thumbnail")
-	ImageSizeLowResultion       = ImageSize("low_resolution")
-	ImageSizeStandardResolution = ImageSize("standard_resolution")
-)
-
-type Image struct {
-	URL    string `json:"url"`
-	Width  int32  `json:"width"`
-	Height int32  `json:"height"`
-}
-
-type Caption struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-}
+const ImageMediaType = MediaType("GraphImage")
