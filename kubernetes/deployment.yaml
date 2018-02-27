@@ -10,7 +10,7 @@ spec:
         app: website
     spec:
       containers:
-        - image: tantalic/bellinghamcodes-website:1.9.0
+        - image: tantalic/bellinghamcodes-website:1.9.1
           name: website
           ports:
             - containerPort: 80
