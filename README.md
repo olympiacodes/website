@@ -46,6 +46,8 @@ Additional configuration options are controlled through the following environmen
 | `$MAILCHIMP_LIST`        | The ID of the MailChimp list.                                                            | `""`                 |
 | `$MEETUP_NAME`           | Meetup.com group URL name to fetch upcoming events from.                                 | `""`                 |
 | `$MEETUP_FETCH_INTERVAL` | Interval, in minutes, to fetch upcoming event information from Meetup.com                | `30`                 |
+| `$CODE_OF_CONDUCT_GITHUB_REPO` | Github repository to fetch the Community Code of Conduct from                      | `"bellinghamcodes/code-of-conduct"` |
+| `$CODE_OF_CONDUCT_FETCH_INTERVAL` | Interval, in minutes, to fetch Community Code of Conduct from Github            | `30`                                |
 
 For example:
 ```sh
