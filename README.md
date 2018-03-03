@@ -1,41 +1,47 @@
 # bellingham.codes [![Go Report Card](https://goreportcard.com/badge/github.com/bellinghamcodes/website)](https://goreportcard.com/report/github.com/bellinghamcodes/website) [![Build Status](https://travis-ci.org/bellinghamcodes/website.svg?branch=master)](https://travis-ci.org/bellinghamcodes/website)
 
-## About bellingham.codes
-bellingham.codes is a social group dedicated to growing the local developer community.
+bellingham.codes is a social group dedicated to growing the local developer community in the greater Bellingham area.
 
-We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion.
+We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. See our [Community Code of Conduct][coc].
 
-## About 
-The primary purpose of this site is to automate the process for members to join the bellingham.codes Slack team.
+## About this Site
+
+This primary purpose of this site is to make it simple for users to join the bellingham.codes Slack workspace and mailing list. In addition to this, the site also lists upcoming events (from meetup.com), recent photos from Instagram, and provides links to our social media channels.
 
 ## Building and Running
+
 The website is built using [Go][go] with dependencies managed through the [dep][dep] tool. Once you have your go environment setup and dep installed you can get dependencies by running:
+
 ```sh
 dep ensure
 ```
 
 Once you have dependencies installed you can build for your current platform by running:
+
 ```sh
 make build
 ```
 
 To run for development purposes run:
+
 ```sh
 make run
 ```
 
 ## Running with Docker
+
 To build the docker image run:
+
 ```sh
 make docker
 ```
 
-The docker image generated will expose port 80 running the website. 
+The docker image generated will expose port 80 running the website.
 
 Additional configuration options are controlled through the following environment variables:
 
 | Environment Variable              | Description                                                                              | Default Value                       |
-|-----------------------------------|------------------------------------------------------------------------------------------|-------------------------------------|
+| --------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
 | `$ORGANIZATION_NAME`              | Name of the organization                                                                 | `"bellingham.codes"`                |
 | `$TWITTER_USERNAME`               | Twitter user to link to in site footer.                                                  | `""`                                |
 | `$INSTAGRAM_USERNAME`             | Instagram user to link to in site footer.                                                | `""`                                |
@@ -50,6 +56,7 @@ Additional configuration options are controlled through the following environmen
 | `$CODE_OF_CONDUCT_FETCH_INTERVAL` | Interval, in minutes, to fetch Community Code of Conduct from Github                     | `30`                                |
 
 For example:
+
 ```sh
 docker run \
     --detach \
@@ -66,6 +73,7 @@ docker run \
 ```
 
 ## Running in Production
+
 The production site runs on a [Kubernetes][k8s] cluster. To deploy on Kubernetes copy the `kubernetes/secrets.example.yaml` to `kubernetes/secrets.yaml` and complete the required values. Then run:
 
 ```sh
@@ -73,6 +81,7 @@ cd kubernetes/
 ./apply.sh
 ```
 
+[coc]: http://bellingham.codes/code-of-conduct
 [go]: http://www.golang.org
 [dep]: https://github.com/golang/dep
 [k8s]: http://kubernetes.io
