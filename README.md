@@ -63,7 +63,7 @@ docker run \
     --env "TWITTER_USERNAME=bellinghamcodes" \
     --env "INSTAGRAM_USERNAME=bellinghamcodes" \
     --env "FACEBOOK_PAGE=bellinghamcodes" \
-    tantalic/bellinghamcodes-website:1.6.1
+    tantalic/bellinghamcodes-website:1.10.0
 ```
 
 ## Running in Production
