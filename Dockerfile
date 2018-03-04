@@ -29,7 +29,8 @@ ARG URL=http://bellingham.codes
 ADD certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /go/src/github.com/bellinghamcodes/website/bellinghamcodes /bellinghamcodes
 
-ENV PORT 80
+# The following environment varialbes can be used to configure this image:
+#
 # ENV ORGANIZATION_NAME
 # ENV SLACK_TEAM
 # ENV SLACK_TOKEN
@@ -37,6 +38,10 @@ ENV PORT 80
 # ENV MAILCHIMP_LIST
 # ENV MEETUP_NAME
 # ENV MEETUP_FETCH_INTERVAL
+# ENV CODE_OF_CONDUCT_GITHUB_REPO
+# ENV CODE_OF_CONDUCT_FETCH_INTERVAL
+ENV PORT 80
+
 
 EXPOSE 80
 
