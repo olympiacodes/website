@@ -18,7 +18,6 @@ RUN go build -a -tags netgo -ldflags "-w -X main.version=${VERSION}" -o bellingh
 
 
 FROM scratch
-MAINTAINER Kevin Stock <kevinstock@tantalic.com>
 
 ADD certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /go/src/github.com/bellinghamcodes/website/bellinghamcodes /bellinghamcodes
@@ -34,4 +33,5 @@ ENV PORT 80
 
 EXPOSE 80
 
+LABEL maintainer="kevinstock@tantalic.com"
 ENTRYPOINT ["/bellinghamcodes"]
