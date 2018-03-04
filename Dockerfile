@@ -1,8 +1,27 @@
+FROM golang:1.10.0 AS builder
+
+# Install dep to use for dependency management
+ENV DEP_VERSION 0.4.1
+RUN curl -o /usr/local/bin/dep -L https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 && \
+    chmod a+x /usr/local/bin/dep
+
+WORKDIR /go/src/github.com/bellinghamcodes/website
+
+# Install dependencies
+COPY Gopkg.* ./
+RUN dep ensure -vendor-only
+
+# Build go binary
+COPY . .
+ARG VERSION=unkown
+RUN go build -a -tags netgo -ldflags "-w -X main.version=${VERSION}" -o bellinghamcodes
+
+
 FROM scratch
 MAINTAINER Kevin Stock <kevinstock@tantalic.com>
 
 ADD certs/ca-certificates.crt /etc/ssl/certs/
-ADD build/bellinghamcodes-linux-amd64 bellinghamcodes
+COPY --from=builder /go/src/github.com/bellinghamcodes/website/bellinghamcodes /bellinghamcodes
 
 ENV PORT 80
 # ENV ORGANIZATION_NAME
