@@ -19,6 +19,13 @@ RUN go build -a -tags netgo -ldflags "-w -X main.version=${VERSION}" -o bellingh
 
 FROM scratch
 
+ARG BUILD_DATE
+ARG NAME="bellingham.codes website"
+ARG VERSION=unkown
+ARG VCS_REF=unkown
+ARG VCS_URL=https://github.com/bellinghamcodes/website
+ARG URL=http://bellingham.codes
+
 ADD certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /go/src/github.com/bellinghamcodes/website/bellinghamcodes /bellinghamcodes
 
@@ -33,5 +40,13 @@ ENV PORT 80
 
 EXPOSE 80
 
-LABEL maintainer="kevinstock@tantalic.com"
+LABEL maintainer="kevinstock@tantalic.com" \
+    org.label-schema.build-date=$BUILD_DATE \
+    org.label-schema.name=$NAME \
+    org.label-schema.url=$URL \
+    org.label-schema.vcs-ref=$VCS_REF \
+    org.label-schema.vcs-url=$VCS_URL \
+    org.label-schema.version=$VERSION \
+    org.label-schema.schema-version="1.0"
+
 ENTRYPOINT ["/bellinghamcodes"]

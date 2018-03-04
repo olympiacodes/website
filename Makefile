@@ -11,6 +11,8 @@ run: ## Run in development mode
 docker: bindata-assetfs ## Builds docker image
 	docker build \
 		--build-arg VERSION=$(VERSION) \
+		--build-arg VCS_REF=$(COMMIT) \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		-t tantalic/bellinghamcodes-website:$(VERSION) .
 
 vet: ## Run tests
