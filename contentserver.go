@@ -17,7 +17,7 @@ type HTMLServer struct {
 // ServeHTTP implements the http.Handler interface, serving the Content HTML
 // in the site theme.
 func (h *HTMLServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	templateData, err := Asset("assets/content.html")
+	templateData, err := Asset("content.html")
 	if err != nil {
 		rw.Write([]byte("Error processing request, please try again later."))
 		return

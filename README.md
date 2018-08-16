@@ -19,6 +19,20 @@ dep ensure
 To run for development purposes run:
 
 ```sh
+make dev
+```
+
+To create the code-generated files (for a production build and prior to making
+a commit) run:
+
+```sh
+make generate
+```
+
+To run in production mode (always test in production mode prior to making
+commits and pull requests!) run:
+
+```sh
 make run
 ```
 
