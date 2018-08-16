@@ -34,14 +34,14 @@ func (s *HomePageServer) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	}
 
 	if s.fileServer == nil {
-		s.fileServer = http.FileServer(assetFS())
+		s.fileServer = http.FileServer(Assets)
 	}
 
 	s.fileServer.ServeHTTP(rw, req)
 }
 
 func (s *HomePageServer) handleIndex(rw http.ResponseWriter, req *http.Request) {
-	templateData, err := Asset("assets/index.html")
+	templateData, err := Asset("index.html")
 	if err != nil {
 		rw.Write([]byte("Error processing request, please try again later."))
 		return

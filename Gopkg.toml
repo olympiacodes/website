@@ -1,12 +1,10 @@
 
-# Gopkg.toml example
-
 [[constraint]]
   name = "github.com/codegangsta/cli"
   version = "^1.20.0"
 
 [[constraint]]
-  name = "github.com/elazarl/go-bindata-assetfs"
+  name = "github.com/shurcooL/vfsgen"
 
 [[constraint]]
   name = "github.com/mnbbrown/mailchimp"

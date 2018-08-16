@@ -3,14 +3,15 @@ language: go
 go_import_path: github.com/bellinghamcodes/website
 
 go:
-  - "1.10"
+  - "1.10.3"
 
 before_script:
-  - make vet
+  - go vet $(shell go list ${PKG}/... | grep -v /vendor/)
 
 install:
   - go get -v github.com/golang/dep/cmd/dep
   - dep ensure
+  - go generate
 
 script:
   - go build

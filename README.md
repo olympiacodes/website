@@ -10,13 +10,30 @@ This primary purpose of this site is to make it simple for users to join the bel
 
 ## Building and Running
 
-The website is built using [Go][go] with dependencies managed through the [dep][dep] tool. Once you have your go environment setup and dep installed you can get dependencies by running:
+The website is built using [Go][go]. However, to simplify the contribution and development process for non-Go developers the site can be developed without a local Go installation. Instead the only requirement is to have a working installation of [Docker][docker]. Once you have Docker installed you can use the following commands for
+development:
+
+Install dependencies by running:
 
 ```sh
-dep ensure
+make dep
 ```
 
 To run for development purposes run:
+
+```sh
+make dev
+```
+
+To create the code-generated files (for a production build and prior to making
+a commit) run:
+
+```sh
+make generate
+```
+
+To run in production mode (always test in production mode prior to making
+commits and pull requests!) run:
 
 ```sh
 make run
@@ -77,5 +94,5 @@ cd kubernetes/
 
 [coc]: http://bellingham.codes/code-of-conduct
 [go]: http://www.golang.org
-[dep]: https://github.com/golang/dep
+[docker]: https://www.docker.com/products/docker-desktop
 [k8s]: http://kubernetes.io
