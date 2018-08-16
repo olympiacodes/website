@@ -2,47 +2,67 @@
 
 
 [[projects]]
+  digest = "1:e85837cb04b78f61688c6eba93ea9d14f60d611e2aaf8319999b1a60d2dafbfa"
   name = "github.com/codegangsta/cli"
   packages = ["."]
+  pruneopts = ""
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
   version = "v1.20.0"
 
 [[projects]]
+  digest = "1:62d0955d00f565947df34afa46da44d43d19340b41a2407e05c27e69e1a24d64"
   name = "github.com/elazarl/go-bindata-assetfs"
   packages = ["."]
+  pruneopts = ""
   revision = "9a6736ed45b44bf3835afeebb3034b57ed329f3e"
 
 [[projects]]
   branch = "master"
+  digest = "1:5f43c153bea95cbc424a2338e88ec7bb89f90bdea7f905761bb57a88bb1142bf"
   name = "github.com/mnbbrown/mailchimp"
   packages = ["."]
+  pruneopts = ""
   revision = "505288a87d9cc7151091d4dbeec0a1a9b10dee91"
 
 [[projects]]
+  digest = "1:bc4f74d9eb508897e551cf0502458bd7a559a8c814811251856bde13d59afe7b"
   name = "github.com/nlopes/slack"
   packages = ["."]
+  pruneopts = ""
   revision = "a1a63712460a18dbe828ae915f954a0f214f3d8e"
 
 [[projects]]
   branch = "master"
+  digest = "1:606fa779c7a80ab6a9ec5836cd12759f86cd6e1d82d5d60cf7ec5133e78c6cf8"
   name = "github.com/shurcooL/sanitized_anchor_name"
   packages = ["."]
+  pruneopts = ""
   revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
 
 [[projects]]
+  digest = "1:ae6407cbe94e0d50fb13640195edb85456693efc601418071c33cf1712e85aa9"
   name = "golang.org/x/net"
   packages = ["websocket"]
+  pruneopts = ""
   revision = "ffe101cce3477a6c6d8f0754d103bb0a84ec1266"
 
 [[projects]]
+  digest = "1:1527313af610f96f1ea591b06bb46edfe8ae17f13d74d2e40c4fed7cd618e678"
   name = "gopkg.in/russross/blackfriday.v2"
   packages = ["."]
+  pruneopts = ""
   revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
   version = "v2.0.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3b11059393fcafe5cefc6bf3b3a27258605bc1583be5fa81624967d98eefaffb"
+  input-imports = [
+    "github.com/codegangsta/cli",
+    "github.com/elazarl/go-bindata-assetfs",
+    "github.com/mnbbrown/mailchimp",
+    "github.com/nlopes/slack",
+    "gopkg.in/russross/blackfriday.v2",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
