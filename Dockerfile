@@ -1,4 +1,4 @@
-FROM golang:1.10.0 AS builder
+FROM golang:1.10.3 AS builder
 
 # Install dep to use for dependency management
 ENV DEP_VERSION 0.4.1
