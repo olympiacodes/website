@@ -10,7 +10,7 @@ spec:
         app: website
     spec:
       containers:
-        - image: amiel/olympiacodes-website:1.10.0
+        - image: amielmartin/olympiacodes-website:1.10.0-10-g6f71405-dirty
           name: website
           ports:
             - containerPort: 80

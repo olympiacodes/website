@@ -28,7 +28,7 @@ docker: ## Builds docker image
 		--build-arg VERSION=$(VERSION) \
 		--build-arg VCS_REF=$(COMMIT) \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-t amiel/olympiacodes-website:$(VERSION) .
+		-t amielmartin/olympiacodes-website:$(VERSION) .
 
 vet: ## Run tests
 	$(DOCKER) "go vet $(shell go list ${PKG}/... | grep -v /vendor/)"

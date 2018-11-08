@@ -80,7 +80,7 @@ docker run \
     --env "TWITTER_USERNAME=olympiacodes" \
     --env "INSTAGRAM_USERNAME=olympiacodes" \
     --env "FACEBOOK_PAGE=olympiacodes" \
-    amiel/olympiacodes-website:1.10.0
+    amielmartin/olympiacodes-website:1.10.0
 ```
 
 ## Running in Production
