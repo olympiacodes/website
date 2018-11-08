@@ -5,7 +5,7 @@ ENV DEP_VERSION 0.5.0
 RUN curl -o /usr/local/bin/dep -L https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 && \
     chmod a+x /usr/local/bin/dep
 
-WORKDIR /go/src/github.com/bellinghamcodes/website
+WORKDIR /go/src/github.com/olympiacodes/website
 
 # Install dependencies
 COPY Gopkg.* ./
@@ -14,20 +14,20 @@ RUN dep ensure -vendor-only
 # Build go binary
 COPY . .
 ARG VERSION=unkown
-RUN go build -a -tags netgo -ldflags "-w -X main.version=${VERSION}" -o bellinghamcodes
+RUN go build -a -tags netgo -ldflags "-w -X main.version=${VERSION}" -o olympiacodes
 
 
 FROM scratch
 
 ARG BUILD_DATE
-ARG NAME="bellingham.codes website"
+ARG NAME="olympia.codes website"
 ARG VERSION=unkown
 ARG VCS_REF=unkown
-ARG VCS_URL=https://github.com/bellinghamcodes/website
-ARG URL=http://bellingham.codes
+ARG VCS_URL=https://github.com/olympiacodes/website
+ARG URL=http://olympia.codes
 
 ADD certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=builder /go/src/github.com/bellinghamcodes/website/bellinghamcodes /bellinghamcodes
+COPY --from=builder /go/src/github.com/olympiacodes/website/olympiacodes /olympiacodes
 
 # The following environment varialbes can be used to configure this image:
 #
@@ -54,4 +54,4 @@ LABEL maintainer="kevinstock@tantalic.com" \
     org.label-schema.version=$VERSION \
     org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/bellinghamcodes"]
+ENTRYPOINT ["/olympiacodes"]

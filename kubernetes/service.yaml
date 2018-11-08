@@ -6,7 +6,7 @@ metadata:
     name: website
     router.deis.io/routable: "true"
   annotations:
-    router.deis.io/domains: bellingham.codes,www.bellingham.codes
+    router.deis.io/domains: olympia.codes,www.olympia.codes
 spec:
   type: ClusterIP
   selector:

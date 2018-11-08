@@ -1,12 +1,12 @@
-# bellingham.codes [![Go Report Card](https://goreportcard.com/badge/github.com/bellinghamcodes/website)](https://goreportcard.com/report/github.com/bellinghamcodes/website) [![Build Status](https://travis-ci.org/bellinghamcodes/website.svg?branch=master)](https://travis-ci.org/bellinghamcodes/website)
+# olympia.codes [![Go Report Card](https://goreportcard.com/badge/github.com/olympiacodes/website)](https://goreportcard.com/report/github.com/olympiacodes/website) [![Build Status](https://travis-ci.org/olympiacodes/website.svg?branch=master)](https://travis-ci.org/olympiacodes/website)
 
-bellingham.codes is a social group dedicated to growing the local developer community in the greater Bellingham area.
+olympia.codes is a social group dedicated to growing the local developer community in the greater Olympia area.
 
 We are committed to providing a friendly, safe and welcoming environment for experienced and aspiring technologists, regardless of gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age or religion. See our [Community Code of Conduct][coc].
 
 ## About this Site
 
-This primary purpose of this site is to make it simple for users to join the bellingham.codes Slack workspace and mailing list. In addition to this, the site also lists upcoming events (from meetup.com), recent photos from Instagram, and provides links to our social media channels.
+This primary purpose of this site is to make it simple for users to join the olympia.codes Slack workspace and mailing list. In addition to this, the site also lists upcoming events (from meetup.com), recent photos from Instagram, and provides links to our social media channels.
 
 ## Building and Running
 
@@ -53,7 +53,7 @@ Additional configuration options are controlled through the following environmen
 
 | Environment Variable              | Description                                                                              | Default Value                       |
 | --------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------- |
-| `$ORGANIZATION_NAME`              | Name of the organization                                                                 | `"bellingham.codes"`                |
+| `$ORGANIZATION_NAME`              | Name of the organization                                                                 | `"olympia.codes"`                |
 | `$TWITTER_USERNAME`               | Twitter user to link to in site footer.                                                  | `""`                                |
 | `$INSTAGRAM_USERNAME`             | Instagram user to link to in site footer.                                                | `""`                                |
 | `$FACEBOOK_PAGE`                  | Facebook page to link to in site footer.                                                 | `""`                                |
@@ -63,7 +63,7 @@ Additional configuration options are controlled through the following environmen
 | `$MAILCHIMP_LIST`                 | The ID of the MailChimp list.                                                            | `""`                                |
 | `$MEETUP_NAME`                    | Meetup.com group URL name to fetch upcoming events from.                                 | `""`                                |
 | `$MEETUP_FETCH_INTERVAL`          | Interval, in minutes, to fetch upcoming event information from Meetup.com                | `30`                                |
-| `$CODE_OF_CONDUCT_GITHUB_REPO`    | Github repository to fetch the Community Code of Conduct from                            | `"bellinghamcodes/code-of-conduct"` |
+| `$CODE_OF_CONDUCT_GITHUB_REPO`    | Github repository to fetch the Community Code of Conduct from                            | `"olympiacodes/code-of-conduct"` |
 | `$CODE_OF_CONDUCT_FETCH_INTERVAL` | Interval, in minutes, to fetch Community Code of Conduct from Github                     | `30`                                |
 
 For example:
@@ -72,15 +72,15 @@ For example:
 docker run \
     --detach \
     --publish 8888:80 \
-    --env "SLACK_TEAM=bellinghamcodes" \
+    --env "SLACK_TEAM=olympiacodes" \
     --env "SLACK_TOKEN=XXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXXX-XXXXXXXXXX" \
     --env "MAILCHIMP_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-us1" \
     --env "MAILCHIMP_LIST=XXXXXXXXXX" \
-    --env "ORGANIZATION_NAME=bellingham.codes"
-    --env "TWITTER_USERNAME=bellinghamcodes" \
-    --env "INSTAGRAM_USERNAME=bellinghamcodes" \
-    --env "FACEBOOK_PAGE=bellinghamcodes" \
-    tantalic/bellinghamcodes-website:1.10.0
+    --env "ORGANIZATION_NAME=olympia.codes"
+    --env "TWITTER_USERNAME=olympiacodes" \
+    --env "INSTAGRAM_USERNAME=olympiacodes" \
+    --env "FACEBOOK_PAGE=olympiacodes" \
+    amiel/olympiacodes-website:1.10.0
 ```
 
 ## Running in Production
@@ -92,7 +92,7 @@ cd kubernetes/
 ./apply.sh
 ```
 
-[coc]: http://bellingham.codes/code-of-conduct
+[coc]: http://olympia.codes/code-of-conduct
 [go]: http://www.golang.org
 [docker]: https://www.docker.com/products/docker-desktop
 [k8s]: http://kubernetes.io

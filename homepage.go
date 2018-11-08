@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/bellinghamcodes/website/internal/meetup"
+	"github.com/olympiacodes/website/internal/meetup"
 )
 
 type HomePageServer struct {
