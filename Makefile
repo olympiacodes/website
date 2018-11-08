@@ -1,4 +1,4 @@
-PKG := github.com/bellinghamcodes/website
+PKG := github.com/olympiacodes/website
 GO_VERSION := 1.10.3
 DEP_VERSION := 0.5.0
 COMMIT := $(strip $(shell git rev-parse --short HEAD))
@@ -12,29 +12,29 @@ DOCKER = docker run -it --rm \
 		-p 3000:3000 \
 		-v "$(PWD)":$(SRC) \
 		golang:$(GO_VERSION) \
-		bash -c 
+		bash -c
 
 dep: ## Install dependencies
 	$(DOCKER) "curl -o /usr/local/bin/dep -L https://github.com/golang/dep/releases/download/v$(DEP_VERSION)/dep-linux-amd64 && chmod a+x /usr/local/bin/dep && cd $(SRC) && dep ensure"
 
 dev: ## Run in development mode
-	$(DOCKER) "cd $(SRC) && go build -tags=dev -o /tmp/bellingham-codes-website . && /tmp/bellingham-codes-website"
+	$(DOCKER) "cd $(SRC) && go build -tags=dev -o /tmp/olympia-codes-website . && /tmp/olympia-codes-website"
 
 run: generate ## Run in production mode
-	$(DOCKER) "cd $(SRC) && go build -o /tmp/bellingham-codes-website . && /tmp/bellingham-codes-website"
+	$(DOCKER) "cd $(SRC) && go build -o /tmp/olympia-codes-website . && /tmp/olympia-codes-website"
 
 docker: ## Builds docker image
 	docker build \
 		--build-arg VERSION=$(VERSION) \
 		--build-arg VCS_REF=$(COMMIT) \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-t tantalic/bellinghamcodes-website:$(VERSION) .
+		-t amiel/olympiacodes-website:$(VERSION) .
 
 vet: ## Run tests
 	$(DOCKER) "go vet $(shell go list ${PKG}/... | grep -v /vendor/)"
 
-update-ca: ## Fetches latest root certificates 
-	curl --time-cond certs/ca-certificates.crt -o certs/ca-certificates.crt https://curl.haxx.se/ca/cacert.pem 
+update-ca: ## Fetches latest root certificates
+	curl --time-cond certs/ca-certificates.crt -o certs/ca-certificates.crt https://curl.haxx.se/ca/cacert.pem
 
 generate: ## Create/update code generated files
 	$(DOCKER) "cd $(SRC) && go generate"

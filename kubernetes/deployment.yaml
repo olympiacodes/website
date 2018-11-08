@@ -10,20 +10,20 @@ spec:
         app: website
     spec:
       containers:
-        - image: tantalic/bellinghamcodes-website:1.10.0
+        - image: amiel/olympiacodes-website:1.10.0
           name: website
           ports:
             - containerPort: 80
               protocol: TCP
           env:
-            - name: MEETUP_NAME
-              value: bellinghamcodes
-            - name: TWITTER_USERNAME
-              value: bellinghamcodes
-            - name: INSTAGRAM_USERNAME
-              value: bellinghamcodes
-            - name: FACEBOOK_PAGE
-              value: bellinghamcodes
+            # - name: MEETUP_NAME
+            #   value: olympiacodes
+            # - name: TWITTER_USERNAME
+            #   value: olympiacodes
+            # - name: INSTAGRAM_USERNAME
+            #   value: olympiacodes
+            # - name: FACEBOOK_PAGE
+            #   value: olympiacodes
             - name: SLACK_TEAM
               valueFrom:
                 secretKeyRef:

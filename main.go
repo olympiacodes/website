@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/bellinghamcodes/website/internal/instagram"
-	"github.com/bellinghamcodes/website/internal/meetup"
+	"github.com/olympiacodes/website/internal/instagram"
+	"github.com/olympiacodes/website/internal/meetup"
 	"github.com/codegangsta/cli"
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 )
@@ -22,7 +22,7 @@ var version = "Unknown"
 func main() {
 	app := cli.NewApp()
 	app.Version = version
-	app.Usage = "bellingam.codes website"
+	app.Usage = "olympia.codes website"
 
 	app.Flags = []cli.Flag{
 		cli.IntFlag{
@@ -70,7 +70,7 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:   "organization-name",
-			Value:  "bellingham.codes",
+			Value:  "olympia.codes",
 			EnvVar: "ORGANIZATION_NAME",
 			Usage:  "name of the organization",
 		},
@@ -105,7 +105,7 @@ func main() {
 			Name:   "coc-github-repo",
 			EnvVar: "CODE_OF_CONDUCT_GITHUB_REPO",
 			Usage:  "github repository to fetch code of conduct from",
-			Value:  "bellinghamcodes/code-of-conduct",
+			Value:  "olympiacodes/code-of-conduct",
 		},
 		cli.IntFlag{
 			Name:   "coc-fetch-interval",
@@ -172,7 +172,7 @@ func serve(c *cli.Context, homePageServer http.Handler, codeOfConductServer http
 	http.Handle("/", homePageServer)
 
 	addr := fmt.Sprintf("%s:%d", c.String("host"), c.Int("port"))
-	log.Printf("Starting bellingham.codes v%s on %s\n", version, addr)
+	log.Printf("Starting olympia.codes v%s on %s\n", version, addr)
 	return http.ListenAndServe(addr, nil)
 }
 

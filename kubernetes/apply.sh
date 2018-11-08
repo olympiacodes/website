@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NAMESACE=bellinghamcodes
+NAMESACE=olympiacodes
 
 kubectl apply -f namespace.yaml
 kubectl --namespace=${NAMESACE} apply -f ./secrets.yaml
