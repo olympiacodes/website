@@ -237,10 +237,10 @@
 				<h2>Join us on Slack:</h2>
 				<input type="text" placeholder="email address" id="email-address" autofocus>
 
-				<label for="mailing-list-opt-in">
-					<input type="checkbox" id="mailing-list-opt-in" name="mailing-list-opt-in" checked>
-					Also add me to the {{ .GroupName }} mailing list. (Volume will be low. We hate superfluous email just as much as you do.)
-				</label>
+				<!-- <label for="mailing-list-opt-in"> -->
+				<!-- 	<input type="checkbox" id="mailing-list-opt-in" name="mailing-list-opt-in" checked> -->
+				<!-- 	Also add me to the {{ .GroupName }} mailing list. (Volume will be low. We hate superfluous email just as much as you do.) -->
+				<!-- </label> -->
 
 				<button onclick="requestInvite();" id="invite-button">Send me an invite</button>
 			</div>
@@ -317,7 +317,7 @@
 			xhr.send(JSON.stringify({
 				email: document.getElementById("email-address").value,
 				requestSlack: true,
-				requestMailingList: document.getElementById("mailing-list-opt-in").checked
+//				requestMailingList: document.getElementById("mailing-list-opt-in").checked
 			}));
 
 
