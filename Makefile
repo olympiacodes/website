@@ -23,7 +23,7 @@ dev: ## Run in development mode
 run: generate ## Run in production mode
 	$(DOCKER) "cd $(SRC) && go build -o /tmp/olympia-codes-website . && /tmp/olympia-codes-website"
 
-docker: ## Builds docker image
+docker: generate ## Builds docker image
 	docker build \
 		--build-arg VERSION=$(VERSION) \
 		--build-arg VCS_REF=$(COMMIT) \
@@ -41,4 +41,7 @@ generate: ## Create/update code generated files
 
 help: ## List available make commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+release: docker
+	docker push amielmartin/olympiacodes-website:$(VERSION)
 
