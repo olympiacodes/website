@@ -10,7 +10,7 @@ spec:
         app: website
     spec:
       containers:
-        - image: amielmartin/olympiacodes-website:1.10.0-22-gacc7f83
+        - image: amielmartin/olympiacodes-website:1.10.1
           name: website
           ports:
             - containerPort: 80
