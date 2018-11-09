@@ -10,7 +10,7 @@ spec:
         app: website
     spec:
       containers:
-        - image: amielmartin/olympiacodes-website:1.10.0-10-g6f71405-dirty
+        - image: amielmartin/olympiacodes-website:1.10.0-22-gacc7f83
           name: website
           ports:
             - containerPort: 80
@@ -22,8 +22,8 @@ spec:
             #   value: olympiacodes
             # - name: INSTAGRAM_USERNAME
             #   value: olympiacodes
-            # - name: FACEBOOK_PAGE
-            #   value: olympiacodes
+            - name: FACEBOOK_PAGE
+              value: olympiacodes
             - name: SLACK_TEAM
               valueFrom:
                 secretKeyRef:
